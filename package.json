@@ -1,6 +1,6 @@
 {
   "name": "@terinou/johninou",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Bot de connaissance dans le cadre du TER 2021 du groupe TERinou.",
   "main": "index.js",
   "scripts": {
