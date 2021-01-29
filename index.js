@@ -42,6 +42,4 @@ client.on("message", async message => {
     }
 })
 
-client.login(config.discord_token).then(res => {
-    // res <=> le token
-});
+client.login(config.discord_token);
