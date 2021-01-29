@@ -15,7 +15,7 @@ for (const file of commandFiles){
 console.log(client.commands);
 
 client.once('ready', () => {
-    console.log("ready");
+    console.log("ready!");
 })
 
 client.once('reconnecting', () => {
