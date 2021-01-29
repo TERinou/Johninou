@@ -1,0 +1,14 @@
+{
+  "name": "@terinou/johninou",
+  "version": "1.0.0",
+  "description": "Bot de connaissance dans le cadre du TER 2021 du groupe TERinou.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Charles DESGENETEZ",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^12.5.1"
+  }
+}
