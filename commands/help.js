@@ -10,7 +10,7 @@ module.exports = {
              let tmp = require(`./${file}`);
              let name = tmp.name;
              let desc = tmp.description;
-             message.author.send(`${name}` + " : " + `${desc}`).catch(err => {
+             message.author.send(`${name} : ${desc}`).catch(err => {
                  console.log(err);
              })
         })
