@@ -27,6 +27,7 @@ client.once('disconnect', () => {
 })
 
 client.on("message", async message => {
+
     if(message.author.bot || !message.content.startsWith(config.prefix)){
         return;
     }
