@@ -15,7 +15,7 @@ for (const file of commandFiles){
 console.log(client.commands);
 
 client.once('ready', () => {
-    console.log("ready");
+    console.log("ready!");
 })
 
 client.once('reconnecting', () => {
@@ -27,13 +27,13 @@ client.once('disconnect', () => {
 })
 
 client.on("message", async message => {
+
     if(message.author.bot || !message.content.startsWith(config.prefix)){
         return;
     }
     const args = message.content.slice(config.prefix.length).split(/ +/);
     const commandName = args.shift().toLowerCase();
     const command = client.commands.get(commandName);
-
     try {
         command.execute(message);
     } catch (err){
