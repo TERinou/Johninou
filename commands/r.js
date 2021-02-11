@@ -4,11 +4,12 @@ module.exports = {
     description: "Que sais-tu sur objet",
     async execute(message){
         const args = message.content.slice(config.prefix.length).split(/ +/);
-        if(args.length !== 2){
+        if(args.length < 2){
             message.reply("Syntaxe correcte : " + config.prefix + this.name + " <objet>");
             return;
         }
-        message.reply("Vous me demandez ce que je sais sur " + args[1]);
+        const arg = message.content.slice(config.prefix.length + this.name.length + 1);
+        message.reply("Vous me demandez ce que je sais sur : " + arg);
         const reply = await calculLong();
         message.reply("Ma réponse est : " + reply);
     }

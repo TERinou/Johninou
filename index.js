@@ -34,7 +34,6 @@ client.on("message", async message => {
     const args = message.content.slice(config.prefix.length).split(/ +/);
     const commandName = args.shift().toLowerCase();
     const command = client.commands.get(commandName);
-
     try {
         command.execute(message);
     } catch (err){
