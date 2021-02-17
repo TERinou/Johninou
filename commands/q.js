@@ -1,4 +1,6 @@
 const config = require("../config");
+const connaissances = require("../interface/connaissances");
+
 module.exports = {
     name: "q",
     description: "Vous voulez que je vous pose une question",
@@ -9,8 +11,16 @@ module.exports = {
             return;
         }
         message.reply("Je suis entrain de vous trouver une question");
-        const reply = await calculLong();
-        message.reply("Ma question est : " + reply);
+
+        const res = await connaissances.getQuestion();
+        const reply = res.data;
+        if(!reply.ok){
+            message.reply("Erreur lors de la récupération du message");
+            console.error(reply);
+            return;
+        }
+
+        message.reply("Ma question est : " + reply.question.content);
         const filter = m => m.author.id === message.author.id;
         await message.channel.awaitMessages(filter,{
             max: 1,
@@ -23,12 +33,4 @@ module.exports = {
             message.reply("Aucune réponse :(");
         })
     }
-}
-
-function calculLong(){
-    return new Promise(resolve => {
-        setTimeout(() => {
-            resolve('résultat');
-        }, 2000);
-    })
 }
