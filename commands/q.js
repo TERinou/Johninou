@@ -19,16 +19,28 @@ module.exports = {
             console.error(reply);
             return;
         }
-
-        message.reply("Ma question est : " + reply.question.content);
+        const questionId = reply.question._id;
+        const question = reply.question.content;
+        message.reply("Ma question est : " + question);
         const filter = m => m.author.id === message.author.id;
         await message.channel.awaitMessages(filter,{
             max: 1,
             time: 30000,
             errors:['time']
-        }).then(message => {
+        }).then(async message => {
             message = message.first();
-            message.reply("Vous avez répondu : " + message.content);
+            const data = {
+                content: message.content,
+                id: questionId
+            }
+            const res = await connaissances.postQuestion(data);
+            const reply = res.data;
+            if(!reply.ok){
+                await message.reply("Erreur lors de l'envoi de la réponse");
+                console.error(res);
+                return;
+            }
+            await message.reply("Vous avez répondu : " + message.content);
         }).catch(collected => {
             message.reply("Aucune réponse :(");
         })

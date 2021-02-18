@@ -15,7 +15,7 @@ npm i
 ## Variables d'environnement
 ```bash
 export DISCORD_TOKEN=<token_discord>
-export API_LINK=<lien de l'api>
+export API_URL=<lien de l'api>
 ```
 
 ## Lancer

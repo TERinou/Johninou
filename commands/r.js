@@ -1,6 +1,7 @@
 const config = require("../config");
 const connaissances = require("../interface/connaissances");
 
+
 module.exports = {
     name: "r",
     description: "Que sais-tu sur objet",
@@ -18,10 +19,10 @@ module.exports = {
         const res = await connaissances.postQuestion(data);
         const reply = res.data;
         if(!reply.ok){
-            message.reply("Erreur lors de la récupération de la réponse");
+            message.reply("Erreur lors de la récupération de la réponse : " + reply.message);
             console.error(res);
             return;
         }
-        message.reply("Ma réponse est : " + reply.reply);
+        message.reply("Ma réponse est : " + reply.word.relations);
     }
 }
