@@ -1,34 +1,46 @@
 const config = require("../config");
+const connaissances = require("../interface/connaissances");
+
 module.exports = {
     name: "q",
     description: "Vous voulez que je vous pose une question",
-    async execute(message){
+    async execute(message) {
         const args = message.content.slice(config.prefix.length).split(/ +/);
-        if(args.length !== 1){
+        if (args.length !== 1) {
             message.reply("Syntaxe correcte : " + config.prefix + this.name);
             return;
         }
-        message.reply("Je suis entrain de vous trouver une question");
-        const reply = await calculLong();
-        message.reply("Ma question est : " + reply);
+        message.reply("Je suis entrain de vous trouver une question...");
+
+        const reply = await connaissances.getQuestion();
+        if (!reply.ok) {
+            message.reply("Erreur lors de la récupération du message.");
+            console.error(reply);
+            return;
+        }
+        const questionId = reply.question['_id'];
+        const question = reply.question.content;
+        message.reply("Ma question est : " + question);
         const filter = m => m.author.id === message.author.id;
-        await message.channel.awaitMessages(filter,{
+        await message.channel.awaitMessages(filter, {
             max: 1,
             time: 30000,
-            errors:['time']
-        }).then(message => {
+            errors: ['time']
+        }).then(async message => {
             message = message.first();
-            message.reply("Vous avez répondu : " + message.content);
-        }).catch(collected => {
+            const data = {
+                content: message.content,
+                id: questionId
+            }
+            const reply = await connaissances.postQuestion(data);
+            if (!reply.ok) {
+                await message.reply("Erreur lors de l'envoi de la réponse.");
+                console.error(reply);
+                return;
+            }
+            await message.reply("Vous avez répondu : " + message.content);
+        }).catch(() => {
             message.reply("Aucune réponse :(");
         })
     }
-}
-
-function calculLong(){
-    return new Promise(resolve => {
-        setTimeout(() => {
-            resolve('résultat');
-        }, 2000);
-    })
 }

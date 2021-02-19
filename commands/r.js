@@ -1,4 +1,7 @@
 const config = require("../config");
+const connaissances = require("../interface/connaissances");
+
+
 module.exports = {
     name: "r",
     description: "Que sais-tu sur objet",
@@ -10,15 +13,15 @@ module.exports = {
         }
         const arg = message.content.slice(config.prefix.length + this.name.length + 1);
         message.reply("Vous me demandez ce que je sais sur : " + arg);
-        const reply = await calculLong();
-        message.reply("Ma réponse est : " + reply);
+        let data = {
+            content: arg
+        }
+        const reply = await connaissances.postQuestion(data);
+        if(!reply.ok){
+            message.reply("Erreur lors de la récupération de la réponse : " + reply.message);
+            console.error(reply);
+            return;
+        }
+        message.reply("Ma réponse est : " + reply.word.relations);
     }
-}
-
-function calculLong(){
-    return new Promise(resolve => {
-        setTimeout(() => {
-            resolve('résultat');
-        }, 2000);
-    })
 }
