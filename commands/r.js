@@ -16,11 +16,10 @@ module.exports = {
         let data = {
             content: arg
         }
-        const res = await connaissances.postQuestion(data);
-        const reply = res.data;
+        const reply = await connaissances.postQuestion(data);
         if(!reply.ok){
             message.reply("Erreur lors de la récupération de la réponse : " + reply.message);
-            console.error(res);
+            console.error(reply);
             return;
         }
         message.reply("Ma réponse est : " + reply.word.relations);
