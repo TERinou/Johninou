@@ -35,7 +35,7 @@ client.on("message", async message => {
     const commandName = args.shift().toLowerCase();
     const command = client.commands.get(commandName);
     try {
-        command.execute(message);
+        await command.execute(message);
     } catch (err){
         console.log(err);
         await message.reply("Il y a eu une erreur");
