@@ -19,7 +19,7 @@ module.exports = {
 
             const {inferences} = reply;
             if(inferences) {
-                const path = inferences.map(inference => `${inference.word} > ${inference.relatedTo}`).join(' > ');
+                const path = inferences.map(inference => inference.word).join(' > ');
                 message.reply(`J'ai trouvé ce résultat en suivant ce chemin : ${path}`);
             }
 
