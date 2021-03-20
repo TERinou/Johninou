@@ -15,7 +15,14 @@ module.exports = {
                 console.log(reply);
                 return;
             }
-            message.reply(reply.word.word)
+            message.reply(`Oui !`);
+
+            const {inferences} = reply;
+            if(inferences) {
+                const path = inferences.map(inference => `${inference.word} > ${inference.relatedTo}`).join(' > ');
+                message.reply(`J'ai trouvé ce résultat en suivant ce chemin : ${path}`);
+            }
+
         } catch (e){
             console.log(e);
         }
