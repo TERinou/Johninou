@@ -7,8 +7,17 @@ module.exports = {
         let data = {
             content: message.content.toString()
         }
-        const res = await connaissances.postQuestion(data);
-        const reply = res.data;
-        message.reply(reply.word.word)
+        try{
+            const res = await connaissances.postQuestion(data);
+            const reply = res.data;
+            if(!reply.ok){
+                message.reply(reply.message);
+                console.log(reply);
+                return;
+            }
+            message.reply(reply.word.word)
+        } catch (e){
+            console.log(e);
+        }
     }
 }
