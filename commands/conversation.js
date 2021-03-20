@@ -1,6 +1,6 @@
 module.exports = {
     name: 'conversation',
-    description: 'Le bot envoie un MP',
+    description: 'deprecated',
     execute(message){
         message.author.send("J'vais te goumer wsh j'ai rien coder pour l'instant!")
             .then(res => {

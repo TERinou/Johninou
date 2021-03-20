@@ -4,6 +4,7 @@ module.exports = class extends Client {
     constructor(config) {
         super();
         this.commands = new Collection();
+        this.privatecommands = new Collection();
         this.config = config;
     }
 }
