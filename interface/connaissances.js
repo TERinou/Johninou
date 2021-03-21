@@ -4,7 +4,7 @@ const config = require("../config");
 module.exports = {
     async getQuestion() {
         let data = "";
-        await axios.get(config.api_url + "/v1/conversations/question")
+        await axios.get(config.api_url + "/v1/conversations/question",{timeout: 10})
             .then(res => {
                 data = res;
             })
@@ -21,7 +21,7 @@ module.exports = {
 
     async postQuestion(data){
         let resultat = "";
-        await axios.post(config.api_url + "/v1/conversations/replies",data)
+        await axios.post(config.api_url + "/v1/conversations/replies",data, {timeout: 10})
             .then(res => {
                 resultat = res;
             })
