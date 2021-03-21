@@ -1,4 +1,5 @@
 const connaissances = require("../interface/connaissances");
+const { PerformanceObserver, performance } = require('perf_hooks');
 
 module.exports = {
     name: "question",
@@ -8,6 +9,8 @@ module.exports = {
             content: message.content.toString()
         }
         try {
+            message.reply("Laisse moi jusqu'à 1 minute pour trouvé ;)")
+            const t0 = performance.now();
             const res = await connaissances.postQuestion(data);
             const reply = res.data;
             if (!reply.ok) {
@@ -15,7 +18,8 @@ module.exports = {
                 console.log(reply);
                 return;
             }
-            message.reply(`Oui !`);
+            const t1 = performance.now()
+            message.reply(`Oui ! (temps: ${Math.round((t1-t0)/10)/100} secondes)`);
 
             const {inferences} = reply;
             if (inferences) {
