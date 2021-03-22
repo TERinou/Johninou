@@ -35,7 +35,7 @@ client.once('disconnect', () => {
 
 client.on("message", async message => {
     if(message.author.bot || !message.content.startsWith(config.prefix)){
-        if(config.channels.indexOf(message.channel.id.toString()) !== undefined && !message.author.bot){
+        if(config.channels.indexOf(message.channel.id.toString()) >= 0 && !message.author.bot){
             if(message.content.endsWith("?")){
                 let pcommandName = "question";
                 let pcommand = client.privatecommands.get(pcommandName);
