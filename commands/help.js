@@ -10,6 +10,10 @@ module.exports = {
              let tmp = require(`./${file}`);
              let name = tmp.name;
              let desc = tmp.description;
+             let dep = tmp.deprecated;
+             if(dep){
+                 return;
+             }
              message.author.send(`${name} : ${desc}`).catch(err => {
                  console.log(err);
              })

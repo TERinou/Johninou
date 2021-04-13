@@ -3,4 +3,5 @@ module.exports = {
 	api_url: process.env.API_URL,
 	prefix: "€",
 	channels: [],
+	calculations: 0,
 };
