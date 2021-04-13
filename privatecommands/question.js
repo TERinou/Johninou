@@ -58,8 +58,18 @@ module.exports = {
                             tdcounter--;
                         }
                     })
-                    collector.on("end",(collected => {
-                        //console.log(tucounter+":"+tdcounter);
+                    collector.on("end",(async collected => {
+                        for (let i in tucounter) {
+                            let data = {
+                                content: "oui",
+                            }
+                        }
+                        for(let i in tdcounter){
+                            let date = {
+                                content: "non",
+                            }
+                        }
+
                         message.reactions.removeAll().catch(err => console.error(`Failed to clear reactions #privatecommandes/question.js:${console.trace}`,err));
                     }))
             });
