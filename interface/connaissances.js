@@ -32,7 +32,6 @@ module.exports = {
                     console.log(err.response.status);
                     resultat = err.response;
                 } else {
-                    config.calculations--;
                     resultat = {
                         data : {
                             ok: false,

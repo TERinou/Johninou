@@ -16,6 +16,7 @@ module.exports = {
             const res = await connaissances.postQuestion(data);
             const reply = res.data;
             if (!reply.ok) {
+                config.calculations--;
                 message.reply(reply.message);
                 console.log(reply);
                 return;
