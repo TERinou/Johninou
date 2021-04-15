@@ -45,6 +45,11 @@ client.on("message", async message => {
                 let pcommand = client.privatecommands.get(pcommandName);
                 pcommand.execute(message);
             } else {
+                if(message.content.startsWith("Pose-moi une question")){
+                    let pcommandName = "pose";
+                    let pcommand = client.privatecommands.get(pcommandName);
+                    pcommand.execute(message);
+                }
                 // let pcommandName = "autre";
                 // let pcommand = client.privatecommands.get(pcommandName);
                 // pcommand.execute(message);
