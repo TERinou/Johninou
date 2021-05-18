@@ -3,6 +3,7 @@ const connaissances = require("../interface/connaissances");
 
 module.exports = {
     name: "q",
+    deprecated: true,
     description: "Vous voulez que je vous pose une question",
     async execute(message){
         const args = message.content.slice(config.prefix.length).split(/ +/);
